@@ -1,0 +1,16 @@
+{
+  "name": "webapp-without-bootstrap",
+  "private": true,
+  "dependencies": {
+    "EaselJS": "~0.8.0",
+    "PreloadJS": "~0.6.0",
+    "SoundJS": "~0.6.0",
+    "TweenJS": "~0.6.0"
+  },
+  "devDependencies": {
+    "EaselJS": "~0.8.0",
+    "PreloadJS": "~0.6.0",
+    "SoundJS": "~0.6.0",
+    "TweenJS": "~0.6.0"
+  }
+}
