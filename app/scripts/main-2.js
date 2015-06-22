@@ -1,12 +1,12 @@
 var stage, tw, th, radius, bw, bh;
-var canvasContainer = document.getElementById("artContainer");
-var canvas = document.getElementById("myCanvas");
-var nowLoading = document.getElementById("now-loading");
+var canvasContainer = document.getElementById('artContainer');
+var canvas = document.getElementById('myCanvas');
+var nowLoading = document.getElementById('now-loading');
 var container = new createjs.Container();
 window.addEventListener('resize', resize, false);
-canvas.addEventListener("click", handleClick);
-var colorArray = ["rgb(33,24,33)", "rgb(241,195,105)", "rgb(77,173,246)", "rgb(231,57,122)", "rgb(99,213,135)", "rgb(75,63,67)", "rgb(184,76,97)", "rgb(195,160,132)"];
-// var colorArray = ["rgb(0,0,0)", "rgb(255,255,255)"];
+canvas.addEventListener('click', handleClick);
+var colorArray = ['rgb(33,24,33)', 'rgb(241,195,105)', 'rgb(77,173,246)', 'rgb(231,57,122)', 'rgb(99,213,135)', 'rgb(75,63,67)', 'rgb(184,76,97)', 'rgb(195,160,132)'];
+// var colorArray = ['rgb(0,0,0)', 'rgb(255,255,255)'];
 tw = canvas.width;
 th = canvas.height;
 var sizeDenom = 15;
@@ -42,6 +42,19 @@ function randomColor(i) {
 var obj = Array();
 var i = 0;
 var vol = 1;
+var preloadText = '';
+var currentPct = 0;
+
+function drawPreloadText() {
+  preloadText = new createjs.Text(currentPct + '%', '20px Open Sans', '#FFFFFF');
+  preloadText.textAlign = 'center';
+  var b = preloadText.getBounds();
+  preloadText.x = (tw - b.width)/2;
+  preloadText.y = (th - b.height)/2;
+  preloadText.textBaseline = 'alphabetic';  
+  container.addChild(preloadText);
+}
+
 
 function drawOne() {
   //var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
@@ -95,82 +108,82 @@ function resize() {
 }
 
 function init() {
-  // document.body.style.overflow = "hidden";
-  stage = new createjs.Stage("myCanvas");
+  // document.body.style.overflow = 'hidden';
+  stage = new createjs.Stage('myCanvas');
   resize();
-  queue = new createjs.LoadQueue(true, "../assets/sax/");
+  queue = new createjs.LoadQueue(true, '../assets/sax/');
   queue.installPlugin(createjs.Sound);
-  queue.addEventListener("complete", handleComplete);
-  queue.on("progress", handleOverallProgress);
+  queue.addEventListener('complete', handleComplete);
+  queue.on('progress', handleOverallProgress);
   queue.loadManifest([{
-    id: "sound1",
-    src: "1.ogg"
+    id: 'sound1',
+    src: '1.ogg'
   }, {
-    id: "sound2",
-    src: "2.ogg"
+    id: 'sound2',
+    src: '2.ogg'
   }, {
-    id: "sound3",
-    src: "3.ogg"
+    id: 'sound3',
+    src: '3.ogg'
   }, {
-    id: "sound4",
-    src: "4.ogg"
+    id: 'sound4',
+    src: '4.ogg'
   }, {
-    id: "sound5",
-    src: "5.ogg"
+    id: 'sound5',
+    src: '5.ogg'
   }, {
-    id: "sound6",
-    src: "6.ogg"
+    id: 'sound6',
+    src: '6.ogg'
   }, {
-    id: "sound7",
-    src: "7.ogg"
+    id: 'sound7',
+    src: '7.ogg'
   // }, {
-  //   id: "sound8",
-  //   src: "9.ogg"
+  //   id: 'sound8',
+  //   src: '9.ogg'
   // }, {
-  //   id: "sound9",
-  //   src: "10.ogg"
+  //   id: 'sound9',
+  //   src: '10.ogg'
   // }, {
-  //   id: "sound10",
-  //   src: "11.ogg"
+  //   id: 'sound10',
+  //   src: '11.ogg'
   // }, {
-  //   id: "sound11",
-  //   src: "12.ogg"
+  //   id: 'sound11',
+  //   src: '12.ogg'
   // }, {
-  //   id: "sound12",
-  //   src: "14.ogg"
+  //   id: 'sound12',
+  //   src: '14.ogg'
   // }, {
-  //   id: "sound13",
-  //   src: "15.ogg"
+  //   id: 'sound13',
+  //   src: '15.ogg'
   // }, {
-  //   id: "sound14",
-  //   src: "16.ogg"
+  //   id: 'sound14',
+  //   src: '16.ogg'
   // }, {
-  //   id: "sound15",
-  //   src: "17.ogg"
+  //   id: 'sound15',
+  //   src: '17.ogg'
   // }, {
-  //   id: "sound16",
-  //   src: "18.ogg"
+  //   id: 'sound16',
+  //   src: '18.ogg'
   // }, {
-  //   id: "sound17",
-  //   src: "19.ogg"
+  //   id: 'sound17',
+  //   src: '19.ogg'
   // }, {
-  //   id: "sound18",
-  //   src: "20.ogg"
+  //   id: 'sound18',
+  //   src: '20.ogg'
   // }, {
-  //   id: "sound19",
-  //   src: "21.ogg"
+  //   id: 'sound19',
+  //   src: '21.ogg'
   // }, {
-  //   id: "sound20",
-  //   src: "22.ogg"
+  //   id: 'sound20',
+  //   src: '22.ogg'
   // }, {
-  //   id: "sound21",
-  //   src: "23.ogg"
+  //   id: 'sound21',
+  //   src: '23.ogg'
   }]);
-  createjs.Sound.alternateExtensions = ["mp3"];
+  createjs.Sound.alternateExtensions = ['mp3'];
 }
 
 function handleClick(event) {
-  var randomSound = "sound" + Math.floor((Math.random() * 7) + 1);
+  var randomSound = 'sound' + Math.floor((Math.random() * 7) + 1);
   console.log(randomSound);
   drawOne();
   createjs.Sound.play(randomSound, {
@@ -181,9 +194,10 @@ function handleClick(event) {
 
 function handleComplete(event) {
   resize();
+  // container.removeChild(preloadText);
   stage.addChild(container);
   drawOne();
-  createjs.Ticker.addEventListener("tick", tick);
+  createjs.Ticker.addEventListener('tick', tick);
 }
 
 function tick(event) {
@@ -191,5 +205,9 @@ function tick(event) {
 }
 
 function handleOverallProgress(event) {
-  nowLoading.innerHTML = Math.floor(queue.progress*100) + "%";
+  //nowLoading.innerHTML = Math.floor(queue.progress*100) + '%';
+  currentPct = Math.floor(queue.progress*100);
+  container.removeChild(preloadText);
+  drawPreloadText();
+  stage.update();
 }
