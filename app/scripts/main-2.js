@@ -10,21 +10,6 @@ th = canvas.height;
 var sizeDenom = 15;
 var initialRadius = th < tw ? th / sizeDenom : tw / sizeDenom;
 
-// THESE TWO VARIABLES STORE THE TIME AND DATE WHEN THE PAGE IS LOADED
-var startDate = new Date();
-var startTime = startDate.getTime();
-
-// THIS FUNCTION CALCULATES THE SECONDS ELAPSED SINCE THE PAGE WAS LOADED
-
-function seconds_elapsed() {
-    var date_now = new Date();
-    var time_now = date_now.getTime();
-    var time_diff = time_now - startTime;
-    var seconds_elapsed = Math.floor(time_diff / 1000);
-
-    return (time_diff);
-}
-
 function randomColor(i) {
     var newArray = colorArray;
     console.log(i);
